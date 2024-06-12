@@ -25,7 +25,7 @@ public class App {
                 .age(30)
                 .phone("1234567890")
                 .address("123 Main St")
-                .nativeCurrency("USD")
+                .nativeCurrency(CurrencyWrapper.USD)
                 .build();
 
         // Convert 100 units of user's native currency to Bitcoin, native currency is

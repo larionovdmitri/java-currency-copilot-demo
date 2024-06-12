@@ -5,8 +5,6 @@ import org.junit.Test;
 
 import com.mycompany.app.models.CurrencyPair;
 
-
-
 public class CurrencyPairTest {
 
     @Test
@@ -34,5 +32,12 @@ public class CurrencyPairTest {
         CurrencyPair pair = new CurrencyPair("USD", "EUR");
         Object other = new Object();
         assertFalse(pair.equals(other));
+    }
+
+    @Test
+    public void safelyHandlesIncorrectParameters() {
+        CurrencyPair pair = new CurrencyPair("USD", "USD");
+        assertEquals(CurrencyPair.DEFAULT_BASE, pair.GetBase().getCode());
+        assertEquals(CurrencyPair.DEFAULT_QUOTE, pair.GetQuote().getCode());
     }
 }

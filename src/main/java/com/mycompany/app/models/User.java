@@ -1,5 +1,8 @@
 package com.mycompany.app.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.mycompany.app.domain.CurrencyWrapper;
 
 public class User {
@@ -11,6 +14,8 @@ public class User {
     private String phone;
     private String address;
     private CurrencyWrapper nativeCurrency;
+    // Map of user's balances in different currencies
+    private Map<CurrencyWrapper, Double> balances = new HashMap<>();
 
     private User(Builder builder) {
         this.firstName = builder.firstName;
@@ -18,6 +23,7 @@ public class User {
         this.age = builder.age;
         this.phone = builder.phone;
         this.address = builder.address;
+        this.setNativeCurrency(builder.nativeCurrency);
     }
 
     public String getName() {
@@ -38,6 +44,34 @@ public class User {
 
     public CurrencyWrapper getNativeCurrency() {
         return nativeCurrency;
+    }
+
+    // Add to balance
+    public void addToBalance(CurrencyWrapper currency, double amount) {
+        double balance = balances.get(currency);
+        balances.put(currency, balance + amount);
+    }
+
+    // Deduct from balance
+    public void deductFromBalance(CurrencyWrapper currency, double amount) {
+        double balance = balances.get(currency);
+        if (balance < amount) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        balances.put(currency, balance - amount);
+    }
+
+    public double getBalance(CurrencyWrapper currency) {
+        return balances.get(currency);
+    }
+
+    public void setNativeCurrency(CurrencyWrapper nativeCurrency) {
+        this.nativeCurrency = nativeCurrency;
+        // If native currency isn't in balances map add it
+        if (!balances.containsKey(nativeCurrency)) {
+            // Add user's native currency to the balances map
+            balances.put(nativeCurrency, 0.0);
+        }
     }
 
     public static class Builder {
@@ -89,11 +123,6 @@ public class User {
 
         public User build() {
             return new User(this);
-        }
-
-        public Builder nativeCurrency(String string) {
-            this.nativeCurrency = CurrencyWrapper.valueOf(string);
-            return this;
         }
     }
 }
