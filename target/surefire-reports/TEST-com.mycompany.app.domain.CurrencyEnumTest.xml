@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.domain.CurrencyEnumTest" time="0.048" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.domain.CurrencyEnumTest" time="0.042" tests="3" errors="0" skipped="0" failures="0">
   <properties/>
-  <testcase name="supportsBtc" classname="com.mycompany.app.domain.CurrencyEnumTest" time="0.03"/>
+  <testcase name="supportsBtc" classname="com.mycompany.app.domain.CurrencyEnumTest" time="0.027"/>
   <testcase name="testCurrencyHasCodeAndDescription" classname="com.mycompany.app.domain.CurrencyEnumTest" time="0.001"/>
   <testcase name="canGetByCode" classname="com.mycompany.app.domain.CurrencyEnumTest" time="0"/>
 </testsuite>

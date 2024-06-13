@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.model.UserManagerTest" time="0.252" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mycompany.app.model.UserManagerTest" time="0.264" tests="4" errors="0" skipped="0" failures="0">
   <properties/>
-  <testcase name="canAcceptPaymentByUserId" classname="com.mycompany.app.model.UserManagerTest" time="0.245"/>
+  <testcase name="canAcceptPaymentByUserId" classname="com.mycompany.app.model.UserManagerTest" time="0.257"/>
   <testcase name="canStateUseNetWorthByCurrency" classname="com.mycompany.app.model.UserManagerTest" time="0.004"/>
-  <testcase name="userHasDefaultNativeCurrency" classname="com.mycompany.app.model.UserManagerTest" time="0.001"/>
-  <testcase name="userHasZeroBalanceOnCreation" classname="com.mycompany.app.model.UserManagerTest" time="0"/>
+  <testcase name="userHasDefaultNativeCurrency" classname="com.mycompany.app.model.UserManagerTest" time="0"/>
+  <testcase name="userHasZeroBalanceOnCreation" classname="com.mycompany.app.model.UserManagerTest" time="0.001"/>
 </testsuite>

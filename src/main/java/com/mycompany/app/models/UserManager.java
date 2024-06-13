@@ -28,10 +28,19 @@ public class UserManager {
         return this.users.remove(user);
     }
 
-    public boolean acceptPayment(String userId, Payment payment) {
+    public boolean acceptPaymentToUserById(String userId, Payment payment) {
         Optional<User> user = users.stream().filter(u -> u.getId().equals(userId)).findFirst();
         if (user.isPresent()) {
             user.get().addToBalance(payment.getCurrencyWrapper(), payment.getAmount());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deductPaymentFromUserById(String userId, Payment payment) {
+        Optional<User> user = users.stream().filter(u -> u.getId().equals(userId)).findFirst();
+        if (user.isPresent()) {
+            user.get().deductFromBalance(payment.getCurrencyWrapper(), payment.getAmount());
             return true;
         }
         return false;

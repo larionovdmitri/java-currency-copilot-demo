@@ -51,7 +51,7 @@ public class UserManagerTest {
         UserManager manager = new UserManager();
         manager.addUser(user);
         // Act
-        boolean result = manager.acceptPayment(userId, payment);
+        boolean result = manager.acceptPaymentToUserById(userId, payment);
         // Assert
         assertTrue(
                 result,

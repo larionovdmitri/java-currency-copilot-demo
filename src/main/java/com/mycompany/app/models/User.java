@@ -55,7 +55,7 @@ public class User {
     }
 
     // Add to balance
-    public void addToBalance(CurrencyWrapper currency, double amount) {
+    public boolean addToBalance(CurrencyWrapper currency, double amount) {
         double balance = getBalanceByCurrency(currency);
         double newBalance = amount;
         // If balance for this currency doesn't exist, create it
@@ -63,13 +63,15 @@ public class User {
             newBalance = balance + amount;
         }
         balances.put(currency, newBalance);
+        return true;
     }
 
     // Deduct from balance
-    public void deductFromBalance(CurrencyWrapper currency, double amount) {
+    public boolean deductFromBalance(CurrencyWrapper currency, double amount) {
         double balance = getBalanceByCurrency(currency);
         if (balance < amount) {
-            throw new IllegalArgumentException("Insufficient funds");
+            // throw new IllegalArgumentException("Insufficient funds");
+            return false;
         }
         double newBalance = balance - amount;
         // If new balance is zero, then remove the currency from the balances map,
@@ -79,7 +81,7 @@ public class User {
         } else {
             balances.put(currency, newBalance);
         }
-
+        return true;
     }
 
     /**
