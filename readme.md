@@ -26,6 +26,11 @@ java -jar target/my-app-1.0-SNAPSHOT.jar
 mvn test
 ```
 
+## Code Coverage
+```bash
+mvn jacoco:report
+```
+
 ### With Stack Trace
 ```bash
 mvn test -DtrimStackTrace=false
