@@ -1,8 +1,9 @@
 package com.mycompany.app.model;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import com.mycompany.app.domain.CurrencyWrapper;
@@ -20,15 +21,19 @@ public class UserTests {
 
     @Test
     public void userHasDefaultNativeCurrency() {
-        assertEquals("Default native currency should be USD", defaultCurrency, user.getNativeCurrency());
+        assertEquals(
+                defaultCurrency, user.getNativeCurrency(),
+                "Default native currency should be USD");
     }
 
     @Test
     public void userHasZeroBalanceOnCreation() {
 
-        Double balances = user.getBalance(defaultCurrency);
+        Double balances = user.getBalanceByCurrency(defaultCurrency);
 
         // Assert that the balance is zero
-        assertEquals("New User Balance should be zero", 0.0, balances, 0.0);
+        assertEquals(
+                0.0, balances, 0.0,
+                "New User Balance should be zero");
     }
 }

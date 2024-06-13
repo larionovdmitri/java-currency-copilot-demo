@@ -6,6 +6,8 @@ import java.util.Map;
 import com.mycompany.app.domain.CurrencyWrapper;
 
 public class User {
+    // guid FOR USER
+    private String id;
     // Required parameters
     private final String firstName;
     private final String lastName;
@@ -15,15 +17,21 @@ public class User {
     private String address;
     private CurrencyWrapper nativeCurrency;
     // Map of user's balances in different currencies
-    private Map<CurrencyWrapper, Double> balances = new HashMap<>();
+    private Map<CurrencyWrapper, Double> balances;
 
-    private User(Builder builder) {
+    public User(Builder builder) {
+        this.id = java.util.UUID.randomUUID().toString();
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.age = builder.age;
         this.phone = builder.phone;
         this.address = builder.address;
+        this.balances = new HashMap<>();
         this.setNativeCurrency(builder.nativeCurrency);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -48,21 +56,44 @@ public class User {
 
     // Add to balance
     public void addToBalance(CurrencyWrapper currency, double amount) {
-        double balance = balances.get(currency);
-        balances.put(currency, balance + amount);
+        double balance = getBalanceByCurrency(currency);
+        double newBalance = amount;
+        // If balance for this currency doesn't exist, create it
+        if (balance > 0) {
+            newBalance = balance + amount;
+        }
+        balances.put(currency, newBalance);
     }
 
     // Deduct from balance
     public void deductFromBalance(CurrencyWrapper currency, double amount) {
-        double balance = balances.get(currency);
+        double balance = getBalanceByCurrency(currency);
         if (balance < amount) {
             throw new IllegalArgumentException("Insufficient funds");
         }
-        balances.put(currency, balance - amount);
+        double newBalance = balance - amount;
+        // If new balance is zero, then remove the currency from the balances map,
+        // otherwise add it to the balances map
+        if (newBalance == 0) {
+            balances.remove(currency);
+        } else {
+            balances.put(currency, newBalance);
+        }
+
     }
 
-    public double getBalance(CurrencyWrapper currency) {
-        return balances.get(currency);
+    /**
+     * Get balance by currency
+     * 
+     * @param currency Currency to get balance for
+     * @return Balance for the currency, 0.0 if currency doesn't exist
+     */
+    public double getBalanceByCurrency(CurrencyWrapper currency) {
+        return balances.containsKey(currency) ? balances.get(currency) : 0.0;
+    }
+
+    public Map<CurrencyWrapper, Double> getBalances() {
+        return balances;
     }
 
     public void setNativeCurrency(CurrencyWrapper nativeCurrency) {

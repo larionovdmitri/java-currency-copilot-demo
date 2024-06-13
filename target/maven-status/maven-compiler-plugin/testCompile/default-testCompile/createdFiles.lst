@@ -1,0 +1,5 @@
+com\mycompany\app\model\CurrencyPairTest.class
+com\mycompany\app\model\PaymentTest.class
+com\mycompany\app\domain\CurrencyEnumTest.class
+com\mycompany\app\AppTest.class
+com\mycompany\app\model\UserTests.class

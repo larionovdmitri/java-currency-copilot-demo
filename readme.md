@@ -20,6 +20,19 @@ mvn clean test-compile test
 java -jar target/my-app-1.0-SNAPSHOT.jar
 ```
 
+## Tests
+
+```bash
+mvn test
+```
+
+### With Stack Trace
+```bash
+mvn test -DtrimStackTrace=false
+```
+
+
+
 ## Compile and Watch Tests Command
 ```bash
 mvn com.github.terefang:maven-watcher-plugin:watch
