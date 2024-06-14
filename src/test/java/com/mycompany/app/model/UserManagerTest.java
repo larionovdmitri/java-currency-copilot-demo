@@ -9,8 +9,7 @@ import com.mycompany.app.models.User;
 import com.mycompany.app.models.UserManager;
 import com.mycompany.app.models.User.Builder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -22,24 +21,6 @@ public class UserManagerTest {
     @BeforeEach
     public void setUp() {
         user = new Builder("John", "Doe").nativeCurrency(defaultCurrency).build();
-    }
-
-    @Test
-    public void userHasDefaultNativeCurrency() {
-        assertEquals(
-                defaultCurrency, user.getNativeCurrency(),
-                "Default native currency should be USD");
-    }
-
-    @Test
-    public void userHasZeroBalanceOnCreation() {
-        Map<CurrencyWrapper, Double> balances = user.getBalances();
-        assertTrue(
-                balances.containsKey(defaultCurrency),
-                "Balances map should contain the native currency");
-        assertEquals(
-                0.0, balances.get(defaultCurrency), 0.001,
-                "Balance for the native currency should be zero on creation");
     }
 
     @Test

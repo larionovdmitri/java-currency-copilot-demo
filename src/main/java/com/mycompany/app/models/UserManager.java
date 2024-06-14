@@ -28,6 +28,10 @@ public class UserManager {
         return this.users.remove(user);
     }
 
+    public List<User> getUsers() {
+        return this.users;
+    }
+
     public boolean acceptPaymentToUserById(String userId, Payment payment) {
         Optional<User> user = users.stream().filter(u -> u.getId().equals(userId)).findFirst();
         if (user.isPresent()) {
